@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Users, Zap } from 'lucide-react';
+import { Clock, Users, Zap, Target } from 'lucide-react';
 
 export default function Benefits() {
   const benefits = [
@@ -17,6 +17,11 @@ export default function Benefits() {
       icon: Zap,
       title: "Increase Hiring Speed & Efficiency",
       description: "Screen more candidates in less time with instant data collection."
+    },
+    {
+      icon: Target,
+      title: "Get Accurate, Structured Data",
+      description: "Key details captured and organized automatically for better decisions."
     }
   ];
 
@@ -29,9 +34,9 @@ export default function Benefits() {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {benefits.map((benefit, index) => (
-            <div key={index} className="text-center group">
+            <div key={index} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 group text-center">
               <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
                 <benefit.icon className="w-8 h-8 text-blue-600" />
               </div>

@@ -21,11 +21,9 @@ export default function Header() {
               }
             }}
           >
-            <img 
-              src="/Hiree Logo.png" 
-              alt="Hiree Logo" 
-              className="w-12 h-12 transition-all duration-300 transform group-hover:scale-110"
-            />
+            <div className="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center transition-all duration-300 transform group-hover:scale-110 hover:shadow-lg">
+              <Phone className="w-8 h-8 text-white transition-transform duration-300 group-hover:rotate-12" />
+            </div>
           </div>
 
           {/* Navigation */}
