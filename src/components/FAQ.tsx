@@ -7,7 +7,7 @@ export default function FAQ() {
   const faqs = [
     {
       question: "What is Hiree?",
-      answer: "Hiree is an AI recruiter assistant that automates candidate calls, asks screening questions, and updates your database in minutes."
+      answer: "Hiree is a recruiter assistant that automates candidate calls, asks screening questions, and updates your database in minutes."
     },
     {
       question: "Do I need technical skills to use Hiree?",
@@ -32,7 +32,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">

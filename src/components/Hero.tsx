@@ -58,7 +58,7 @@ export default function Hero({ onBookDemo }: HeroProps) {
                     />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 text-sm">AI Calling in Progress</h3>
+                    <h3 className="font-semibold text-gray-900 text-sm">Hiree Calling in Progress</h3>
                     <p className="text-xs text-gray-600">Candidate: Priya Sharma</p>
                   </div>
                 </div>

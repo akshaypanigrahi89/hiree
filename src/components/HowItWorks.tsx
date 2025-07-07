@@ -13,7 +13,7 @@ export default function HowItWorks() {
       icon: Phone,
       step: "Step 2",
       title: "Hiree Makes the Call",
-      description: "AI calls the candidate with a natural, human-like voice."
+      description: "Hiree calls the candidate with a natural, human-like voice."
     },
     {
       icon: MessageSquare,

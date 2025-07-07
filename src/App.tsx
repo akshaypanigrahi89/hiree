@@ -7,16 +7,15 @@ import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import TryItNow from './components/TryItNow';
 import SignupForm from './components/SignupForm';
+import DemoModal from './components/DemoModal';
 import { useState } from 'react';
 
 function App() {
   const [showSignup, setShowSignup] = useState(false);
+  const [showDemo, setShowDemo] = useState(false);
 
   const handleBookDemo = () => {
-    const demoSection = document.getElementById('try-it-now');
-    if (demoSection) {
-      demoSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    setShowDemo(true);
   };
 
   const handleSignupClick = () => {
@@ -41,6 +40,7 @@ function App() {
       <FAQ />
       <TryItNow />
       
+      {showDemo && <DemoModal onClose={() => setShowDemo(false)} />}
       {showSignup && (
         <SignupForm 
           onClose={() => setShowSignup(false)} 

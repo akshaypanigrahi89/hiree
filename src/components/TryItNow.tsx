@@ -2,6 +2,19 @@ import React, { useState } from 'react';
 import { Play, CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function TryItNow() {
+  const jobSuggestions = [
+    'Sales Executive',
+    'Software Developer',
+    'Marketing Manager',
+    'Customer Support Specialist',
+    'HR Manager',
+    'Product Manager',
+    'Data Analyst',
+    'Business Development Manager',
+    'UX/UI Designer',
+    'Operations Manager'
+  ];
+
   const [formData, setFormData] = useState({
     jobRole: '',
     candidateName: '',
@@ -11,6 +24,8 @@ export default function TryItNow() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -19,6 +34,19 @@ export default function TryItNow() {
       [name]: value
     }));
     
+    // Handle job role suggestions
+    if (name === 'jobRole') {
+      if (value.trim()) {
+        const filtered = jobSuggestions.filter(job => 
+          job.toLowerCase().includes(value.toLowerCase())
+        );
+        setFilteredSuggestions(filtered);
+        setShowSuggestions(true);
+      } else {
+        setShowSuggestions(false);
+      }
+    }
+    
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({
@@ -26,6 +54,14 @@ export default function TryItNow() {
         [name]: ''
       }));
     }
+  };
+
+  const selectSuggestion = (suggestion: string) => {
+    setFormData(prev => ({
+      ...prev,
+      jobRole: suggestion
+    }));
+    setShowSuggestions(false);
   };
 
   const validateForm = () => {
@@ -140,17 +176,48 @@ export default function TryItNow() {
                 <label htmlFor="jobRole" className="block text-sm font-medium text-gray-700 mb-2">
                   Job Role
                 </label>
-                <input
-                  type="text"
-                  id="jobRole"
-                  name="jobRole"
-                  value={formData.jobRole}
-                  onChange={handleInputChange}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 hover:border-blue-400 focus:shadow-lg ${
-                    errors.jobRole ? 'border-red-300 bg-red-50' : 'border-gray-300'
-                  }`}
-                  placeholder="e.g., Software Engineer"
-                />
+                <div className="relative">
+                  <input
+                    type="text"
+                    id="jobRole"
+                    name="jobRole"
+                    value={formData.jobRole}
+                    onChange={handleInputChange}
+                    onFocus={() => {
+                      if (formData.jobRole.trim()) {
+                        const filtered = jobSuggestions.filter(job => 
+                          job.toLowerCase().includes(formData.jobRole.toLowerCase())
+                        );
+                        setFilteredSuggestions(filtered);
+                        setShowSuggestions(true);
+                      }
+                    }}
+                    onBlur={() => {
+                      // Delay hiding suggestions to allow for clicks
+                      setTimeout(() => setShowSuggestions(false), 200);
+                    }}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 hover:border-blue-400 focus:shadow-lg ${
+                      errors.jobRole ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                    }`}
+                    placeholder="e.g., Software Engineer"
+                  />
+                  
+                  {/* Suggestions dropdown */}
+                  {showSuggestions && filteredSuggestions.length > 0 && (
+                    <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-48 overflow-y-auto">
+                      {filteredSuggestions.map((suggestion, index) => (
+                        <button
+                          key={index}
+                          type="button"
+                          onClick={() => selectSuggestion(suggestion)}
+                          className="w-full text-left px-4 py-2 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
+                        >
+                          {suggestion}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
                 {errors.jobRole && (
                   <div className="flex items-center mt-2 text-red-600 text-sm">
                     <AlertCircle className="w-4 h-4 mr-1" />
