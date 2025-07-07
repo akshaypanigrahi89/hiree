@@ -14,7 +14,7 @@ export default function Hero() {
                 Zero Manual Chasing.
               </h1>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Enter candidate details, let Hiree handle the rest — calls, screening questions, and updates, done in minutes.
+                Just add candidate details — Hiree calls, screens, and updates — no hassle, just results.
               </p>
             </div>
 
