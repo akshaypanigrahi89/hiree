@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Target, Users, Settings } from 'lucide-react';
+import { Clock, Target, Users, Settings, Phone } from 'lucide-react';
 
 export default function WhyChooseHiree() {
   const benefits = [
