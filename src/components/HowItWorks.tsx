@@ -60,22 +60,22 @@ export default function HowItWorks() {
               {steps.map((step, index) => (
                 <div key={index} className="relative">
                   {/* Step card */}
-                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border border-gray-100 relative z-10">
+                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-2 border-blue-100 hover:border-blue-300 relative z-10">
                     {/* Step number */}
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
+                      <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg border-2 border-white">
                         {step.step}
                       </div>
                     </div>
                     
                     {/* Icon */}
-                    <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 hover:bg-blue-200">
-                      <step.icon className="w-8 h-8 text-blue-600" />
+                    <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 hover:from-blue-200 hover:to-blue-300 shadow-md">
+                      <step.icon className="w-10 h-10 text-blue-700" />
                     </div>
                     
                     {/* Content */}
                     <div className="text-center space-y-3">
-                      <h3 className="text-lg font-semibold text-gray-900">{step.title}</h3>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
                       <p className="text-gray-600 text-sm leading-relaxed">{step.description}</p>
                     </div>
                   </div>
@@ -83,8 +83,8 @@ export default function HowItWorks() {
                   {/* Arrow between steps */}
                   {index < steps.length - 1 && (
                     <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 z-20">
-                      <div className="w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center border-2 border-blue-200">
-                        <ArrowRight className="w-4 h-4 text-blue-600" />
+                      <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-lg flex items-center justify-center border-2 border-white">
+                        <ArrowRight className="w-5 h-5 text-white" />
                       </div>
                     </div>
                   )}
@@ -101,19 +101,19 @@ export default function HowItWorks() {
               <div className="flex items-start space-x-4">
                 {/* Step indicator */}
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-lg font-bold shadow-lg">
+                  <div className="w-14 h-14 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full flex items-center justify-center text-lg font-bold shadow-lg border-2 border-white">
                     {step.step}
                   </div>
                 </div>
                 
                 {/* Content */}
-                <div className="flex-1 bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+                <div className="flex-1 bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100 hover:border-blue-300">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <step.icon className="w-6 h-6 text-blue-600" />
+                    <div className="w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
+                      <step.icon className="w-7 h-7 text-blue-700" />
                     </div>
                     <div className="space-y-2">
-                      <h3 className="text-lg font-semibold text-gray-900">{step.title}</h3>
+                      <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
                       <p className="text-gray-600 leading-relaxed">{step.description}</p>
                     </div>
                   </div>
@@ -130,10 +130,18 @@ export default function HowItWorks() {
 
         {/* Call to action */}
         <div className="text-center mt-16">
-          <div className="inline-flex items-center space-x-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 cursor-pointer group">
+          <button 
+            onClick={() => {
+              const tryItNowSection = document.getElementById('try-it-now');
+              if (tryItNowSection) {
+                tryItNowSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="inline-flex items-center space-x-2 bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 cursor-pointer group shadow-lg"
+          >
             <span className="font-medium">Ready to get started?</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </div>
+          </button>
         </div>
       </div>
     </section>

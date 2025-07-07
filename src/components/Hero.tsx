@@ -15,47 +15,7 @@ export default function Hero({ onBookDemo }: HeroProps) {
   return (
     <section className="relative bg-gradient-to-br from-blue-50 to-white pt-12 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative">
-          {/* Hiree calling in progress - top right */}
-          <div className="absolute top-0 right-0 z-10 animate-float hidden lg:block">
-            <div className="bg-white rounded-xl shadow-lg p-4 border border-gray-100 hover:shadow-xl transition-shadow duration-300 w-80">
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center animate-pulse">
-                    <Phone className="w-4 h-4 text-blue-600 animate-bounce" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 text-sm">Hiree Calling in Progress</h3>
-                    <p className="text-xs text-gray-600">Candidate: Priya Sharma</p>
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <div className="bg-blue-50 rounded-lg p-2 border-l-4 border-blue-400">
-                    <p className="text-xs text-gray-700">
-                      "Hi Priya, this is Hiree calling on behalf of ABC Tech..."
-                    </p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-2 border-l-4 border-gray-400">
-                    <p className="text-xs text-gray-700">
-                      "Yes, I'm interested in new opportunities."
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-600">Call Duration: 2:34</span>
-                  <span className="text-blue-600 flex items-center">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-ping"></div>
-                    Active
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Main content - centered */}
-          <div className="text-center space-y-8 max-w-4xl mx-auto">
+        <div className="text-center space-y-8 max-w-4xl mx-auto">
             {/* Header */}
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold text-gray-900 leading-tight">
@@ -112,7 +72,6 @@ export default function Hero({ onBookDemo }: HeroProps) {
                 <span>Get started in 2 minutes</span>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </section>
