@@ -47,11 +47,11 @@ export default function Header() {
           </div>
         </div>
       </div>
+      </header>
 
       {/* Modals */}
       {showLogin && <LoginForm onClose={() => setShowLogin(false)} />}
       {showSignup && <SignupForm onClose={() => setShowSignup(false)} />}
     </>
-    </header>
   );
 }
