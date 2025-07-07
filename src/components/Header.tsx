@@ -34,14 +34,20 @@ export default function Header() {
             >
               Signup
             </button>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+            <button 
+              onClick={() => setShowSignup(true)}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+            >
               Try For Free
             </button>
           </nav>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105">
+            <button 
+              onClick={() => setShowSignup(true)}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+            >
               Try For Free
             </button>
           </div>

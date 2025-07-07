@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import { Mail, Lock, User, UserPlus } from 'lucide-react';
+import { Mail, Lock, User, UserPlus, CheckCircle } from 'lucide-react';
 
 interface SignupFormProps {
   onClose: () => void;
+  onSuccess: () => void;
 }
 
-export default function SignupForm({ onClose }: SignupFormProps) {
+export default function SignupForm({ onClose, onSuccess }: SignupFormProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -22,9 +25,37 @@ export default function SignupForm({ onClose }: SignupFormProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Signup submitted:', formData);
-    // Handle signup logic here
+    setIsSubmitting(true);
+    
+    // Simulate API call
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setShowSuccess(true);
+      
+      // Show success message for 2 seconds, then close and redirect
+      setTimeout(() => {
+        onClose();
+        onSuccess();
+      }, 2000);
+    }, 1500);
   };
+
+  if (showSuccess) {
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md transform transition-all duration-300 scale-100">
+          <div className="p-8 text-center">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
+              <CheckCircle className="w-8 h-8 text-green-600" />
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to Hiree!</h2>
+            <p className="text-gray-600 mb-4">Your account has been created successfully.</p>
+            <p className="text-sm text-blue-600 font-medium">Redirecting you to start screening...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -100,10 +131,20 @@ export default function SignupForm({ onClose }: SignupFormProps) {
 
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 flex items-center justify-center space-x-2"
+              disabled={isSubmitting}
+              className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed text-white py-3 px-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 flex items-center justify-center space-x-2"
             >
-              <UserPlus className="w-5 h-5" />
-              <span>Signup</span>
+              {isSubmitting ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <span>Creating Account...</span>
+                </>
+              ) : (
+                <>
+                  <UserPlus className="w-5 h-5" />
+                  <span>Signup</span>
+                </>
+              )}
             </button>
           </form>
 
