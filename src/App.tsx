@@ -2,7 +2,9 @@ import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
-import WhyChooseHiree from './components/WhyChooseHiree';
+import Benefits from './components/Benefits';
+import Testimonials from './components/Testimonials';
+import FAQ from './components/FAQ';
 import TryItNow from './components/TryItNow';
 import SignupForm from './components/SignupForm';
 import { useState } from 'react';
@@ -10,7 +12,14 @@ import { useState } from 'react';
 function App() {
   const [showSignup, setShowSignup] = useState(false);
 
-  const handleTryForFree = () => {
+  const handleBookDemo = () => {
+    const demoSection = document.getElementById('try-it-now');
+    if (demoSection) {
+      demoSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleSignupClick = () => {
     setShowSignup(true);
   };
 
@@ -25,9 +34,11 @@ function App() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <Hero onTryForFree={handleTryForFree} />
+      <Hero onBookDemo={handleBookDemo} />
       <HowItWorks />
-      <WhyChooseHiree />
+      <Benefits />
+      <Testimonials />
+      <FAQ />
       <TryItNow />
       
       {showSignup && (

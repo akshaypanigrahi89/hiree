@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Phone } from 'lucide-react';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
@@ -7,17 +6,29 @@ export default function Header() {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 
+  const scrollToDemo = () => {
+    const demoSection = document.getElementById('try-it-now');
+    if (demoSection) {
+      demoSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center hover:shadow-lg transition-all duration-300 transform hover:scale-110">
-              <Phone className="w-5 h-5 text-white transition-transform duration-300 hover:rotate-12" />
-            </div>
-            <span className="text-xl font-bold text-blue-600">Hiree</span>
+          <div 
+            className="flex items-center space-x-2 cursor-pointer group" 
+            onClick={scrollToDemo}
+          >
+            <img 
+              src="/Hiree Logo.png" 
+              alt="Hiree Logo" 
+              className="w-8 h-8 transition-all duration-300 transform group-hover:scale-110"
+            />
+            <span className="text-xl font-bold text-blue-600 group-hover:text-blue-700 transition-colors duration-300">Hiree</span>
           </div>
 
           {/* Navigation */}
@@ -35,20 +46,20 @@ export default function Header() {
               Signup
             </button>
             <button 
-              onClick={() => setShowSignup(true)}
+              onClick={scrollToDemo}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
             >
-              Try For Free
+              Book a Demo
             </button>
           </nav>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button 
-              onClick={() => setShowSignup(true)}
+              onClick={scrollToDemo}
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
             >
-              Try For Free
+              Book a Demo
             </button>
           </div>
         </div>

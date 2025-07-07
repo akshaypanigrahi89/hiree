@@ -1,11 +1,11 @@
 import React from 'react';
-import { ArrowRight, CheckCircle, Phone } from 'lucide-react';
+import { ArrowRight, CheckCircle, Calendar } from 'lucide-react';
 
 interface HeroProps {
-  onTryForFree: () => void;
+  onBookDemo: () => void;
 }
 
-export default function Hero({ onTryForFree }: HeroProps) {
+export default function Hero({ onBookDemo }: HeroProps) {
   return (
     <section className="relative bg-gradient-to-br from-blue-50 to-white pt-12 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,10 +24,11 @@ export default function Hero({ onTryForFree }: HeroProps) {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
-                onClick={onTryForFree}
+                onClick={onBookDemo}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 group"
               >
-                <span>Try For Free</span>
+                <Calendar className="w-5 h-5" />
+                <span>Book a Demo – See Hiree in Action</span>
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </button>
             </div>
@@ -50,7 +51,11 @@ export default function Hero({ onTryForFree }: HeroProps) {
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center animate-pulse">
-                    <Phone className="w-5 h-5 text-blue-600 animate-bounce" />
+                    <img 
+                      src="/Hiree Logo.png" 
+                      alt="Hiree" 
+                      className="w-5 h-5 animate-bounce"
+                    />
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 text-sm">AI Calling in Progress</h3>
