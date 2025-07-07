@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Phone } from 'lucide-react';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
@@ -14,7 +13,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div 
-            className="flex items-center cursor-pointer group" 
+            className="cursor-pointer group" 
             onClick={() => {
               const demoSection = document.getElementById('try-it-now');
               if (demoSection) {
@@ -22,9 +21,11 @@ export default function Header() {
               }
             }}
           >
-            <div className="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center transition-all duration-300 transform group-hover:scale-110 hover:shadow-lg">
-              <Phone className="w-8 h-8 text-white transition-transform duration-300 group-hover:rotate-12" />
-            </div>
+            <img 
+              src="/Hiree Logo copy.png" 
+              alt="Hiree Logo" 
+              className="h-12 w-auto transition-all duration-300 transform group-hover:scale-110 hover:drop-shadow-lg"
+            />
           </div>
 
           {/* Navigation */}
