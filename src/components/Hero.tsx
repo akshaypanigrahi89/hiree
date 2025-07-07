@@ -10,8 +10,9 @@ export default function Hero() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Automate Candidate Screening.{' '}
-                <span className="text-blue-600">Zero Manual Chasing.</span>
+                Automate Candidate Screening.<br />
+<span className="text-blue-600">Zero Manual Chasing.</span>
+                
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed">
                 Enter candidate details, let AI handle the rest — calls, screening questions, and updates, done in minutes.
