@@ -46,7 +46,7 @@ export default function TryItNow() {
                   name="jobRole"
                   value={formData.jobRole}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 hover:border-teal-400 focus:shadow-lg"
                   placeholder="e.g., Software Engineer"
                 />
               </div>
@@ -61,7 +61,7 @@ export default function TryItNow() {
                   name="candidateName"
                   value={formData.candidateName}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 hover:border-teal-400 focus:shadow-lg"
                   placeholder="e.g., Priya Sharma"
                 />
               </div>
@@ -76,7 +76,7 @@ export default function TryItNow() {
                   name="phoneNumber"
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 hover:border-teal-400 focus:shadow-lg"
                   placeholder="e.g., +91 9876543210"
                 />
               </div>
@@ -91,27 +91,27 @@ export default function TryItNow() {
                   value={formData.customQuestions}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 hover:border-teal-400 focus:shadow-lg"
                   placeholder="Add any specific questions you'd like to ask..."
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors flex items-center justify-center space-x-2"
+                className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 group"
               >
-                <Play className="w-5 h-5" />
+                <Play className="w-5 h-5 transition-transform group-hover:scale-110" />
                 <span>Start Screening Now</span>
               </button>
             </form>
           </div>
 
           {/* Preview */}
-          <div className="bg-gray-50 rounded-xl p-8">
+          <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
               Preview Call Script Example:
             </h3>
-            <div className="bg-white rounded-lg p-6 shadow-sm">
+            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300 border-l-4 border-gradient-to-b from-blue-400 to-teal-400">
               <p className="text-gray-700 leading-relaxed italic">
                 "Hi Priya, this is Hiree calling on behalf of ABC Tech. Are you currently open to new opportunities? Where are you currently located? Could you share your years of experience? What's your current and expected salary? Thank you!"
               </p>
