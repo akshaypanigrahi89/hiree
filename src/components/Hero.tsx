@@ -10,8 +10,8 @@ export default function Hero() {
           <div className="space-y-6">
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-                Automate Candidate Screening.<br />
-                Zero Manual Chasing.
+                Stop Chasing.<br />
+                Start Hiring Smarter.
               </h1>
               <p className="text-lg text-gray-600 leading-relaxed">
                 Just add candidate details — Hiree calls, screens, and updates — no hassle, just results.
