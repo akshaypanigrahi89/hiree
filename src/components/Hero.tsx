@@ -14,7 +14,7 @@ export default function Hero() {
                 Start Hiring Smarter.
               </h1>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Just add candidate details — Hiree calls, screens, and updates — no hassle, just results.
+                Just add candidate details, Hiree calls, screens, and updates — no hassle, just results.
               </p>
             </div>
 
