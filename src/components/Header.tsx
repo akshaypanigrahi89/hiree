@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Phone } from 'lucide-react';
+import LoginForm from './LoginForm';
+import SignupForm from './SignupForm';
 
 export default function Header() {
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
+
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+    <>
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -16,8 +22,18 @@ export default function Header() {
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors duration-300 hover:scale-105 transform">Login</a>
-            <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors duration-300 hover:scale-105 transform">Signup</a>
+            <button 
+              onClick={() => setShowLogin(true)}
+              className="text-gray-600 hover:text-blue-600 transition-colors duration-300 hover:scale-105 transform"
+            >
+              Login
+            </button>
+            <button 
+              onClick={() => setShowSignup(true)}
+              className="text-gray-600 hover:text-blue-600 transition-colors duration-300 hover:scale-105 transform"
+            >
+              Signup
+            </button>
             <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
               Try For Free
             </button>
@@ -31,6 +47,11 @@ export default function Header() {
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      {showLogin && <LoginForm onClose={() => setShowLogin(false)} />}
+      {showSignup && <SignupForm onClose={() => setShowSignup(false)} />}
+    </>
     </header>
   );
 }
