@@ -12,7 +12,7 @@ export default function Footer() {
               <img 
                 src="/Hiree Logo.png" 
                 alt="Hiree Logo" 
-                className="h-8 w-auto filter brightness-0 invert"
+                className="h-16 w-auto filter brightness-0 invert"
               />
             </div>
             <p className="text-gray-400 leading-relaxed">

@@ -9,6 +9,7 @@ import TryItNow from './components/TryItNow';
 import SignupForm from './components/SignupForm';
 import DemoModal from './components/DemoModal';
 import Footer from './components/Footer';
+import Footer from './components/Footer';
 import { useState } from 'react';
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
       <Testimonials />
       <FAQ />
       <TryItNow />
+      <Footer />
       <Footer />
       
       {showDemo && <DemoModal onClose={() => setShowDemo(false)} />}

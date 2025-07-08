@@ -60,7 +60,7 @@ export default function HowItWorks() {
               {steps.map((step, index) => (
                 <div key={index} className="relative">
                   {/* Step card */}
-                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-2 border-blue-100 hover:border-blue-300 relative z-10">
+                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-2 border-blue-100 hover:border-blue-300 relative z-10 h-80 flex flex-col">
                     {/* Step number */}
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                       <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg border-2 border-white">
@@ -69,14 +69,14 @@ export default function HowItWorks() {
                     </div>
                     
                     {/* Icon */}
-                    <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 hover:from-blue-200 hover:to-blue-300 shadow-md">
+                    <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 hover:from-blue-200 hover:to-blue-300 shadow-md">
                       <step.icon className="w-10 h-10 text-blue-700" />
                     </div>
                     
                     {/* Content */}
-                    <div className="text-center space-y-3">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">{step.description}</p>
+                    <div className="text-center space-y-3 flex-1 flex flex-col justify-center">
+                      <h3 className="text-lg font-bold text-gray-900 mb-3 leading-tight">{step.title}</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed flex-1">{step.description}</p>
                     </div>
                   </div>
                   
