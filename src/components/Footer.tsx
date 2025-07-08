@@ -9,11 +9,13 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <img 
-                src="/Hiree Logo.png" 
-                alt="Hiree Logo" 
-                className="h-16 w-auto filter brightness-0 invert"
-              />
+              <div className="bg-white p-2 rounded-lg">
+                <img 
+                  src="/Hiree Logo.png" 
+                  alt="Hiree Logo" 
+                  className="h-12 w-auto"
+                />
+              </div>
             </div>
             <p className="text-gray-400 leading-relaxed">
               Revolutionizing recruitment with AI-powered candidate screening calls. 

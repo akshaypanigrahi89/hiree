@@ -29,7 +29,7 @@ export default function Header() {
             </div>
 
             {/* Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            <nav className="hidden lg:flex items-center justify-center space-x-8 flex-1">
               <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors duration-300 hover:scale-105 transform font-medium">
                 Meet Hiree
               </a>
@@ -45,6 +45,10 @@ export default function Header() {
               <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors duration-300 hover:scale-105 transform font-medium">
                 Contact Us
               </a>
+            </nav>
+
+            {/* Auth buttons */}
+            <div className="hidden lg:flex items-center space-x-4">
               <button 
                 onClick={() => setShowLogin(true)}
                 className="text-gray-600 hover:text-blue-600 transition-colors duration-300 hover:scale-105 transform font-medium"
@@ -57,7 +61,7 @@ export default function Header() {
               >
                 Signup
               </button>
-            </nav>
+            </div>
 
             {/* Mobile menu button */}
             <div className="lg:hidden">
