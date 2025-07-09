@@ -1,82 +1,101 @@
-import React, { useState } from 'react';
-import { ArrowRight, CheckCircle, Calendar, Play } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight } from 'lucide-react';
+import DemoModal from './DemoModal';
 
-interface HeroProps {
-  onBookDemo: () => void;
-}
+export default function Hero() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [showDemo, setShowDemo] = useState(false);
 
-export default function Hero({ onBookDemo }: HeroProps) {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  useEffect(() => {
+    // Trigger animation after component mounts
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 200);
 
-  const handleVideoClick = () => {
-    setIsVideoPlaying(true);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleBookDemo = () => {
+    setShowDemo(true);
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-blue-50 to-white pt-16 pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left side - Content */}
-          <div className="space-y-8">
-            {/* Header */}
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Stop Chasing.<br />
-                <span className="text-blue-600 whitespace-nowrap">Start Hiring Smarter.</span>
+    <>
+      <section className="min-h-screen bg-white flex items-center relative overflow-hidden">
+        {/* Subtle background elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-transparent"></div>
+        <div className="absolute top-20 right-20 w-64 h-64 bg-blue-100 rounded-full opacity-10 blur-3xl"></div>
+        <div className="absolute bottom-32 right-32 w-48 h-48 bg-blue-200 rounded-full opacity-15 blur-2xl"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl">
+            {/* Main headline */}
+            <div 
+              className={`transform transition-all duration-1000 ease-out ${
+                isVisible 
+                  ? 'translate-y-0 opacity-100' 
+                  : 'translate-y-8 opacity-0'
+              }`}
+            >
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-8">
+                How Hiree Works —{' '}
+                <span className="text-blue-600">
+                  Your Smart Recruiter Assistant
+                </span>
               </h1>
-              
-              {/* Sub-header */}
-              <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-                Screen 3x More Candidates in Half the Time <br />— no hassle, just results.
+            </div>
+
+            {/* Supporting subheadline */}
+            <div 
+              className={`transform transition-all duration-1000 delay-300 ease-out ${
+                isVisible 
+                  ? 'translate-y-0 opacity-100' 
+                  : 'translate-y-8 opacity-0'
+              }`}
+            >
+              <p className="text-xl sm:text-2xl md:text-3xl text-gray-600 leading-relaxed mb-12 max-w-3xl">
+                Stop chasing. Start hiring smarter. Screen 3x more candidates in half the time — no hassle, just results.
               </p>
             </div>
 
-            {/* CTA */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            {/* Call-to-action button */}
+            <div 
+              className={`transform transition-all duration-1000 delay-600 ease-out ${
+                isVisible 
+                  ? 'translate-y-0 opacity-100 scale-100' 
+                  : 'translate-y-8 opacity-0 scale-95'
+              }`}
+            >
               <button 
-                onClick={onBookDemo}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 group"
+                onClick={handleBookDemo}
+                className="group bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center space-x-3 shadow-lg"
               >
-                <Calendar className="w-5 h-5" />
-                <span>Book a Demo</span>
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                <span>Book a Demo — See Hiree in Action</span>
+                <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
               </button>
             </div>
 
-            <div className="flex items-center space-x-6 text-sm text-gray-600">
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="w-4 h-4 text-blue-500" />
-                <span>Get started in 2 minutes</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right side - Video */}
-          <div className="relative">
+            {/* Animated underline accent */}
             <div 
-              className="relative bg-gray-900 rounded-xl overflow-hidden cursor-pointer group shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
-              onClick={handleVideoClick}
-            >
-              <div className="aspect-video bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
-                {!isVideoPlaying ? (
-                  <div className="text-center">
-                    <div className="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-opacity-30 transition-all duration-300">
-                      <Play className="w-10 h-10 text-white ml-1" />
-                    </div>
-                    <p className="text-white text-lg font-medium">Watch Hiree in Action</p>
-                    <p className="text-blue-100 text-sm mt-1">2 minute demo</p>
-                  </div>
-                ) : (
-                  <div className="text-center text-white">
-                    <div className="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                    <p className="text-lg">Loading demo video...</p>
-                  </div>
-                )}
-              </div>
-            </div>
+              className={`mt-16 h-1 bg-blue-600 rounded-full transition-all duration-1200 delay-900 ${
+                isVisible ? 'w-24 opacity-100' : 'w-0 opacity-0'
+              }`}
+            ></div>
           </div>
         </div>
-      </div>
-    </section>
+
+        {/* Scroll indicator */}
+        <div 
+          className={`absolute bottom-8 left-8 transition-all duration-1000 delay-1200 ${
+            isVisible ? 'translate-y-0 opacity-40' : 'translate-y-4 opacity-0'
+          }`}
+        >
+          <div className="w-0.5 h-16 bg-blue-600 rounded-full animate-pulse"></div>
+        </div>
+      </section>
+
+      {/* Demo Modal */}
+      {showDemo && <DemoModal onClose={() => setShowDemo(false)} />}
+    </>
   );
 }

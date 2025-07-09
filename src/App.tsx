@@ -1,5 +1,4 @@
 import React from 'react';
-import VideoTitle from './components/VideoTitle';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
@@ -14,11 +13,6 @@ import { useState } from 'react';
 
 function App() {
   const [showSignup, setShowSignup] = useState(false);
-  const [showDemo, setShowDemo] = useState(false);
-
-  const handleBookDemo = () => {
-    setShowDemo(true);
-  };
 
   const handleSignupClick = () => {
     setShowSignup(true);
@@ -34,9 +28,8 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white">
-      <VideoTitle />
       <Header />
-      <Hero onBookDemo={handleBookDemo} />
+      <Hero />
       <HowItWorks />
       <Benefits />
       <Testimonials />
@@ -44,7 +37,6 @@ function App() {
       <TryItNow />
       <Footer />
       
-      {showDemo && <DemoModal onClose={() => setShowDemo(false)} />}
       {showSignup && (
         <SignupForm 
           onClose={() => setShowSignup(false)} 
