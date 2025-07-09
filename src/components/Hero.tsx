@@ -22,7 +22,7 @@ export default function Hero({ onBookDemo }: HeroProps) {
             <div className="space-y-6">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 Stop Chasing.<br />
-                Start Hiring Smarter.
+                <span className="text-blue-600">Start Hiring Smarter.</span>
               </h1>
               
               {/* Sub-header */}
