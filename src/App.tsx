@@ -1,4 +1,5 @@
 import React from 'react';
+import VideoTitleSection from './components/VideoTitleSection';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white">
+      <VideoTitleSection />
       <Header />
       <Hero onBookDemo={handleBookDemo} />
       <HowItWorks />
