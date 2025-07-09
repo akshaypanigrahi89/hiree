@@ -21,8 +21,8 @@ export default function Hero({ onBookDemo }: HeroProps) {
             {/* Header */}
             <div className="space-y-6">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Hire Smarter.<br />
-                Chase No One.
+                Stop Chasing.<br />
+                Start Hiring Smarter.
               </h1>
               
               {/* Sub-header */}
