@@ -27,7 +27,7 @@ export default function Hero({ onBookDemo }: HeroProps) {
               
               {/* Sub-header */}
               <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-                Screen 3x More Candidates in Half the Time — no hassle, just results.
+                Screen 3x More Candidates in Half the Time <br> </br>— no hassle, just results.
               </p>
             </div>
 
