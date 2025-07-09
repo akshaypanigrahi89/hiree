@@ -7,7 +7,7 @@ export default function HowItWorks() {
       icon: UserPlus,
       step: "01",
       title: "Input Candidate Details",
-      description: "Add candidate information in seconds — name, phone number, role, and more."
+      description: "Add candidate information in seconds."
     },
     {
       icon: Phone,
