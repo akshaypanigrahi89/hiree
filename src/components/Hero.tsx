@@ -186,5 +186,6 @@ export default function Hero({ onBookDemo }: HeroProps) {
         </div>
       )}
     </>
+  )
   );
 }
