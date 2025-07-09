@@ -13,6 +13,11 @@ import { useState } from 'react';
 
 function App() {
   const [showSignup, setShowSignup] = useState(false);
+  const [showDemo, setShowDemo] = useState(false);
+
+  const handleBookDemo = () => {
+    setShowDemo(true);
+  };
 
   const handleSignupClick = () => {
     setShowSignup(true);
@@ -29,7 +34,7 @@ function App() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <Hero />
+      <Hero onBookDemo={handleBookDemo} />
       <HowItWorks />
       <Benefits />
       <Testimonials />
@@ -37,6 +42,7 @@ function App() {
       <TryItNow />
       <Footer />
       
+      {showDemo && <DemoModal onClose={() => setShowDemo(false)} />}
       {showSignup && (
         <SignupForm 
           onClose={() => setShowSignup(false)} 
