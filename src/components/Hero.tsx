@@ -16,6 +16,7 @@ export default function Hero({ onBookDemo }: HeroProps) {
   const handleSignupClick = () => {
     setShowSignup(true);
   };
+
   return (
     <>
       <section className="relative min-h-screen overflow-hidden">
@@ -59,6 +60,16 @@ export default function Hero({ onBookDemo }: HeroProps) {
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </button>
                 
+                <button 
+                  onClick={onBookDemo}
+                  className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2 group"
+                >
+                  <Calendar className="w-5 h-5" />
+                  <span>Book a Demo</span>
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </button>
+              </div>
+              
               {/* Trust Indicators */}
               <div className="flex items-center space-x-8 mt-12 text-blue-100 animate-fadeInUp" style={{ animationDelay: '600ms' }}>
                 <div className="flex items-center space-x-2">
@@ -73,7 +84,7 @@ export default function Hero({ onBookDemo }: HeroProps) {
             </div>
           </div>
         </div>
-                <button 
+
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
           <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
@@ -81,7 +92,7 @@ export default function Hero({ onBookDemo }: HeroProps) {
           </div>
         </div>
       </section>
-                  onClick={onBookDemo}
+
       {/* Signup Modal */}
       {showSignup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -95,7 +106,7 @@ export default function Hero({ onBookDemo }: HeroProps) {
                 <h2 className="text-2xl font-bold text-gray-900">Get Started with Hiree</h2>
                 <p className="text-gray-600 mt-2">Join thousands of recruiters who trust Hiree</p>
               </div>
-                  className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2 group"
+
               {/* Form */}
               <form className="space-y-6">
                 <div>
@@ -111,7 +122,7 @@ export default function Hero({ onBookDemo }: HeroProps) {
                     placeholder="Enter your full name"
                   />
                 </div>
-                >
+
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                     Email Address
@@ -125,7 +136,7 @@ export default function Hero({ onBookDemo }: HeroProps) {
                     placeholder="Enter your email address"
                   />
                 </div>
-                  <Calendar className="w-5 h-5" />
+
                 <div>
                   <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
                     Company
@@ -139,7 +150,7 @@ export default function Hero({ onBookDemo }: HeroProps) {
                     placeholder="Enter your company name"
                   />
                 </div>
-                  <span>Book a Demo</span>
+
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                     Message (Optional)
@@ -152,7 +163,7 @@ export default function Hero({ onBookDemo }: HeroProps) {
                     placeholder="Tell us about your hiring needs..."
                   />
                 </div>
-                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+
                 <button
                   type="submit"
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 flex items-center justify-center space-x-2"
@@ -161,7 +172,7 @@ export default function Hero({ onBookDemo }: HeroProps) {
                   <span>Create Account</span>
                 </button>
               </form>
-                </button>
+
               {/* Footer */}
               <div className="mt-6 text-center">
                 <p className="text-sm text-gray-600">
@@ -171,7 +182,7 @@ export default function Hero({ onBookDemo }: HeroProps) {
                   </button>
                 </p>
               </div>
-              </div>
+
               {/* Close button */}
               <button
                 onClick={() => setShowSignup(false)}
@@ -186,6 +197,5 @@ export default function Hero({ onBookDemo }: HeroProps) {
         </div>
       )}
     </>
-  )
   );
 }
