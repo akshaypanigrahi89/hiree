@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
-import { ArrowRight, CheckCircle, Calendar, Play, UserPlus } from 'lucide-react';
+import { ArrowRight, CheckCircle, Calendar, UserPlus } from 'lucide-react';
 
 interface HeroProps {
   onBookDemo: () => void;
 }
 
 export default function Hero({ onBookDemo }: HeroProps) {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
-
-  const handleVideoClick = () => {
-    setIsVideoPlaying(true);
-  };
 
   const handleSignupClick = () => {
     setShowSignup(true);
