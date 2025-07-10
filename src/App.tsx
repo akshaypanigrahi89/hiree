@@ -1,40 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
-import WhyChooseHiree from './components/WhyChooseHiree';
+import Benefits from './components/Benefits';
+import Testimonials from './components/Testimonials';
 import TryItNow from './components/TryItNow';
-import SignupForm from './components/SignupForm';
-import { useState } from 'react';
+import FAQ from './components/FAQ';
+import Footer from './components/Footer';
+import DemoModal from './components/DemoModal';
 
 function App() {
-  const [showSignup, setShowSignup] = useState(false);
+  const [showDemoModal, setShowDemoModal] = useState(false);
 
-  const handleTryForFree = () => {
-    setShowSignup(true);
+  const handleBookDemo = () => {
+    setShowDemoModal(true);
   };
 
-  const handleSignupSuccess = () => {
-    // Scroll to Try It Now section
-    const tryItNowSection = document.getElementById('try-it-now');
-    if (tryItNowSection) {
-      tryItNowSection.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleCloseDemoModal = () => {
+    setShowDemoModal(false);
   };
 
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <Hero onTryForFree={handleTryForFree} />
+      <Hero onBookDemo={handleBookDemo} />
       <HowItWorks />
-      <WhyChooseHiree />
+      <Benefits />
+      <Testimonials />
       <TryItNow />
+      <FAQ />
+      <Footer />
       
-      {showSignup && (
-        <SignupForm 
-          onClose={() => setShowSignup(false)} 
-          onSuccess={handleSignupSuccess}
-        />
+      {showDemoModal && (
+        <DemoModal onClose={handleCloseDemoModal} />
       )}
     </div>
   );

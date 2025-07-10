@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
-import { Play, CheckCircle, AlertCircle } from 'lucide-react';
+import { Play, CheckCircle, AlertCircle, Phone } from 'lucide-react';
 
 export default function TryItNow() {
+  const jobSuggestions = [
+    'Sales Executive',
+    'Software Developer',
+    'Marketing Manager',
+    'Customer Support Specialist',
+    'HR Manager',
+    'Product Manager',
+    'Data Analyst',
+    'Business Development Manager',
+    'UX/UI Designer',
+    'Operations Manager'
+  ];
+
   const [formData, setFormData] = useState({
     jobRole: '',
     candidateName: '',
@@ -11,6 +24,9 @@ export default function TryItNow() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
+  const [isCallInProgress, setIsCallInProgress] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -19,6 +35,19 @@ export default function TryItNow() {
       [name]: value
     }));
     
+    // Handle job role suggestions
+    if (name === 'jobRole') {
+      if (value.trim()) {
+        const filtered = jobSuggestions.filter(job => 
+          job.toLowerCase().includes(value.toLowerCase())
+        );
+        setFilteredSuggestions(filtered);
+        setShowSuggestions(true);
+      } else {
+        setShowSuggestions(false);
+      }
+    }
+    
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({
@@ -26,6 +55,14 @@ export default function TryItNow() {
         [name]: ''
       }));
     }
+  };
+
+  const selectSuggestion = (suggestion: string) => {
+    setFormData(prev => ({
+      ...prev,
+      jobRole: suggestion
+    }));
+    setShowSuggestions(false);
   };
 
   const validateForm = () => {
@@ -57,8 +94,9 @@ export default function TryItNow() {
     }
     
     setIsSubmitting(true);
+    setIsCallInProgress(true);
     
-    // Simulate API call
+    // Simulate actual recruiter agent call
     setTimeout(() => {
       setIsSubmitting(false);
       setShowSuccess(true);
@@ -66,6 +104,7 @@ export default function TryItNow() {
       // Hide success message after 5 seconds
       setTimeout(() => {
         setShowSuccess(false);
+        setIsCallInProgress(false);
         // Reset form
         setFormData({
           jobRole: '',
@@ -75,6 +114,23 @@ export default function TryItNow() {
         });
       }, 5000);
     }, 3000);
+  };
+
+  // Generate dynamic preview based on form data
+  const generatePreviewScript = () => {
+    const candidateName = formData.candidateName || '[Candidate Name]';
+    const jobRole = formData.jobRole || '[Job Role]';
+    const hasCustomQuestions = formData.customQuestions.trim().length > 0;
+    
+    let script = `"Hi ${candidateName}, this is Hiree calling on behalf of [Company Name]. We have an exciting ${jobRole} opportunity. Are you currently open to new opportunities? Where are you currently located? Could you share your years of experience in ${jobRole}? What's your current and expected salary?`;
+    
+    if (hasCustomQuestions) {
+      script += ` ${formData.customQuestions}`;
+    }
+    
+    script += ` Thank you!"`;
+    
+    return script;
   };
 
   if (showSuccess) {
@@ -125,8 +181,11 @@ export default function TryItNow() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Try It Now
+            Book a Demo
           </h2>
+          <p className="text-lg text-gray-600">
+            See Hiree in action with a personalized demo
+          </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -137,17 +196,48 @@ export default function TryItNow() {
                 <label htmlFor="jobRole" className="block text-sm font-medium text-gray-700 mb-2">
                   Job Role
                 </label>
-                <input
-                  type="text"
-                  id="jobRole"
-                  name="jobRole"
-                  value={formData.jobRole}
-                  onChange={handleInputChange}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 hover:border-blue-400 focus:shadow-lg ${
-                    errors.jobRole ? 'border-red-300 bg-red-50' : 'border-gray-300'
-                  }`}
-                  placeholder="e.g., Software Engineer"
-                />
+                <div className="relative">
+                  <input
+                    type="text"
+                    id="jobRole"
+                    name="jobRole"
+                    value={formData.jobRole}
+                    onChange={handleInputChange}
+                    onFocus={() => {
+                      if (formData.jobRole.trim()) {
+                        const filtered = jobSuggestions.filter(job => 
+                          job.toLowerCase().includes(formData.jobRole.toLowerCase())
+                        );
+                        setFilteredSuggestions(filtered);
+                        setShowSuggestions(true);
+                      }
+                    }}
+                    onBlur={() => {
+                      // Delay hiding suggestions to allow for clicks
+                      setTimeout(() => setShowSuggestions(false), 200);
+                    }}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 hover:border-blue-400 focus:shadow-lg ${
+                      errors.jobRole ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                    }`}
+                    placeholder="e.g., Software Engineer"
+                  />
+                  
+                  {/* Suggestions dropdown */}
+                  {showSuggestions && filteredSuggestions.length > 0 && (
+                    <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-48 overflow-y-auto">
+                      {filteredSuggestions.map((suggestion, index) => (
+                        <button
+                          key={index}
+                          type="button"
+                          onClick={() => selectSuggestion(suggestion)}
+                          className="w-full text-left px-4 py-2 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
+                        >
+                          {suggestion}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
                 {errors.jobRole && (
                   <div className="flex items-center mt-2 text-red-600 text-sm">
                     <AlertCircle className="w-4 h-4 mr-1" />
@@ -204,33 +294,39 @@ export default function TryItNow() {
 
               <div>
                 <label htmlFor="customQuestions" className="block text-sm font-medium text-gray-700 mb-2">
-                  Custom Questions
+                  Additional Screening Questions
                 </label>
-                <textarea
-                  id="customQuestions"
-                  name="customQuestions"
-                  value={formData.customQuestions}
-                  onChange={handleInputChange}
-                  rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 hover:border-blue-400 focus:shadow-lg"
-                  placeholder="Add any specific questions you'd like to ask..."
-                />
+                <p className="text-xs text-gray-500 mb-2">
+                  Add specific questions you'd like our AI to ask during the screening call
+                </p>
+                <div className="relative">
+                  <textarea
+                    id="customQuestions"
+                    name="customQuestions"
+                    value={formData.customQuestions}
+                    onChange={handleInputChange}
+                    rows={4}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 hover:border-blue-400 focus:shadow-lg"
+                    placeholder="e.g., Do you have experience with React? Are you willing to relocate? What's your notice period?"
+                  />
+                </div>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 group"
+                className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 group relative overflow-hidden"
               >
                 {isSubmitting ? (
                   <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>Screening in progress...</span>
+                    <Phone className="w-5 h-5 animate-bounce" />
+                    <span>Calling {formData.candidateName || 'candidate'}...</span>
+                    <div className="absolute inset-0 bg-blue-700 opacity-20 animate-pulse"></div>
                   </>
                 ) : (
                   <>
                     <Play className="w-5 h-5 transition-transform group-hover:scale-110" />
-                    <span>Start Screening Now</span>
+                    <span>Start AI Screening Call</span>
                   </>
                 )}
               </button>
@@ -238,13 +334,13 @@ export default function TryItNow() {
           </div>
 
           {/* Preview */}
-          <div className="bg-blue-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300">
+          <div className="bg-blue-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 border border-blue-200">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
-              Preview Call Script Example:
+              Live Preview - Call Script:
             </h3>
-            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300 border-l-4 border-blue-400">
+            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300 border-l-4 border-blue-400 min-h-[120px]">
               <p className="text-gray-700 leading-relaxed italic">
-                "Hi Priya, this is Hiree calling on behalf of ABC Tech. Are you currently open to new opportunities? Where are you currently located? Could you share your years of experience? What's your current and expected salary? Thank you!"
+                {generatePreviewScript()}
               </p>
             </div>
             
@@ -255,12 +351,23 @@ export default function TryItNow() {
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-600">Questions Asked:</span>
-                <span className="font-medium text-gray-900">5-7 questions</span>
+                <span className="font-medium text-gray-900">
+                  {4 + (formData.customQuestions.trim() ? 1 : 0)} questions
+                </span>
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-600">Response Format:</span>
                 <span className="font-medium text-gray-900">Structured data</span>
               </div>
+              {isCallInProgress && (
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-blue-600 font-medium flex items-center">
+                    <Phone className="w-4 h-4 mr-2 animate-bounce" />
+                    Call Status:
+                  </span>
+                  <span className="font-medium text-blue-600">In Progress...</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
